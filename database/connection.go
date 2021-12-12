@@ -6,6 +6,8 @@ import (
 	"strconv"
 
 	config "github.com/LitHaxor/fiber-go-gorm.git/configs"
+	"github.com/LitHaxor/fiber-go-gorm.git/models"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -31,6 +33,9 @@ func ConnectDB() {
     if err != nil {
         panic("failed to connect database")
     }
+
+    DB.AutoMigrate(&models.Note{})
+    fmt.Println("Database Migrated")
 
     fmt.Println("Connection Opened to Database")
 }
